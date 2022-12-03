@@ -19,7 +19,7 @@ def main():
         },
         {
             "type": "list",
-            "message": "What's your favourite programming language:",
+            "message": "Choose the operation:",
             "choices": [
                 "Addition", "Subtraction", "Multiplication", "Division"
             ],
