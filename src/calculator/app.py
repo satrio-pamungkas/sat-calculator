@@ -1,17 +1,45 @@
 from InquirerPy import prompt
+from InquirerPy.validator import EmptyInputValidator
+from operation import Operation
+from utils import parse_to_number
 
-# Basic usage - Example from InquirerPy
-questions = [
-    {"type": "input", "message": "What's your name:", "name": "name"},
-    {
-        "type": "list",
-        "message": "What's your favourite programming language:",
-        "choices": ["Go", "Python", "Rust", "JavaScript"],
-    },
-    {"type": "confirm", "message": "Confirm?"},
-]
-result = prompt(questions)
-name = result["name"]
-fav_lang = result[1]
-confirm = result[2]
-print(result)
+def main():
+    questions = [
+        {
+            "type": "number", 
+            "message": "Input the first number:", 
+            "float_allowed": True,
+            "validate": EmptyInputValidator()
+        },
+        {
+            "type": "number", 
+            "message": "Input the second number:", 
+            "float_allowed": True,
+            "validate": EmptyInputValidator()
+        },
+        {
+            "type": "list",
+            "message": "What's your favourite programming language:",
+            "choices": [
+                "Addition", "Subtraction", "Multiplication", "Division"
+            ],
+        },
+    ]
+    
+    result = prompt(questions)
+    first_number = parse_to_number(result[0])
+    second_number = parse_to_number(result[1])
+    ops = Operation(first_number, second_number)
+    
+    if result[2] == 'Addition':
+        print(ops.addition())
+    elif result[2] == 'Subtraction':
+        print(ops.subtraction())
+    elif result[2] == 'Multiplication':
+        print(ops.multiplication())
+    else:
+        print(ops.division())
+    
+    
+if __name__ == "__main__":
+    main()
