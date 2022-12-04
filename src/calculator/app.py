@@ -1,9 +1,9 @@
 from InquirerPy import prompt
 from InquirerPy.validator import EmptyInputValidator
-from operation import Operation
-from utils import parse_to_number
+from .operation import Operation
+from .utils import parse_to_number
 
-def main():
+def run():
     questions = [
         {
             "type": "number", 
@@ -41,5 +41,3 @@ def main():
         print(ops.division())
     
     
-if __name__ == "__main__":
-    main()
